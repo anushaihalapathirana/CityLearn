@@ -345,7 +345,9 @@ class CityLearn(gym.Env):
         elec_generation = 0
         
         if self.central_agent:
-            # If the agent is centralized, all the actions for all the buildings are provided as an ordered list of numbers. The order corresponds to the order of the buildings as they appear on the file building_attributes.json, and only considering the buildings selected for the simulation by the user (building_ids).
+            # If the agent is centralized, all the actions for all the buildings are provided as an ordered list of numbers.
+            # The order corresponds to the order of the buildings as they appear on the file building_attributes.json,
+            # and only considering the buildings selected for the simulation by the user (building_ids).
             for uid, building in self.buildings.items():
             
                 if self.buildings_states_actions[uid]['actions']['cooling_storage']:
@@ -499,7 +501,7 @@ class CityLearn(gym.Env):
                                 s.append(building.sim_results[state_name][self.time_step])
                             elif state_name == 'net_electricity_consumption':
                                 s.append(building.current_net_electricity_demand)
-                            elif state_name != 'cooling_storage_soc' and state_name != 'dhw_storage_soc':
+                            elif state_name != 'cooling_storage_soc' and state_name != 'dhw_storage_soc' and (state_name != 'electrical_storage_soc'):
                                 s.append(building.sim_results[state_name][self.time_step])
                                 s_appended.append(state_name)
                             elif state_name == 'cooling_storage_soc':
@@ -588,7 +590,7 @@ class CityLearn(gym.Env):
                                 s.append(building.sim_results[state_name][self.time_step])
                             elif state_name == 'net_electricity_consumption':
                                 s.append(building.current_net_electricity_demand)
-                            elif state_name != 'cooling_storage_soc' and state_name != 'dhw_storage_soc':
+                            elif state_name != 'cooling_storage_soc' and state_name != 'dhw_storage_soc' and (state_name != 'electrical_storage_soc'):
                                 s.append(building.sim_results[state_name][self.time_step])
                                 s_appended.append(state_name)
                             elif state_name == 'cooling_storage_soc':
